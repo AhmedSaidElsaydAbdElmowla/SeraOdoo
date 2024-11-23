@@ -1,0 +1,25 @@
+<odoo>
+    <template id="assets_backend" name="sera assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sera_app/static/src/js/sera_app.js"></script>
+        </xpath>
+    </template>
+    <template id="assets_qweb" name="sera qweb" inherit_id="web.assets_qweb">
+        <xpath expr="." position="inside">
+            <t t-name="sera_app.template" t-call="web.basic_layout">
+                <div>
+                    <input type="date" t-model="state.selectedDate" t-on-change="onDateChange"/>
+                    <input t-model="state.inputVal" placeholder="Add new sera"/>
+                    <button t-on-click="addSera">Add</button>
+                    <ul>
+                        <li t-foreach="state.sera" t-as="sera" t-key="sera.id">
+                            <input type="checkbox" t-model="sera.is_done" t-on-change="toggleDone(sera)"/>
+                            <t t-esc="sera.name"/>
+                            <span t-esc="sera.date"/>
+                        </li>
+                    </ul>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

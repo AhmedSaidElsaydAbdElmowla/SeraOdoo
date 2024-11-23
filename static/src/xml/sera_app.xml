@@ -1,0 +1,14 @@
+<t t-name="sera_app.template">
+    <div>
+        <input type="date" t-model="state.selectedDate" t-on-change="onDateChange"/>
+        <input t-model="state.inputVal" placeholder="Add new Sera"/>
+        <button t-on-click="addSera">Add</button>
+        <ul>
+            <li t-foreach="state.sera" t-as="sera" t-key="sera.id">
+                <input type="checkbox" t-model="sera.is_done" t-on-change="toggleDone(sera)"/>
+                <t t-esc="sera.name"/>
+                <span t-esc="sera.date"/>
+            </li>
+        </ul>
+    </div>
+</t>
